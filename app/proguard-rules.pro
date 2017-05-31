@@ -1,0 +1,4 @@
+-dontwarn okio.**
+-dontwarn okhttp3.**
+-dontwarn org.objenesis.**
+-dontwarn retrofit2.**

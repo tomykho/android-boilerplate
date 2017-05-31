@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Boilerplate</string>
+    <string name="post">Post</string>
+    <string name="albums">Albums</string>
+</resources>
