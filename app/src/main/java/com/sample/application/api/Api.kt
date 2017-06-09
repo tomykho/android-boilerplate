@@ -1,10 +1,19 @@
 package com.sample.application.api
 
-import com.sample.application.model.Album
-import io.reactivex.Observable
-import retrofit2.http.GET
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
-interface Api {
-    @GET("albums")
-    fun findAlbums(): Observable<List<Album>>
+object Api {
+
+    val service: ApiService
+
+    init {
+        val retrofit: Retrofit = Retrofit.Builder()
+                .baseUrl("https://jsonplaceholder.typicode.com")
+                .addCallAdapterFactory(ApiCallAdapterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build()
+        service = retrofit.create(ApiService::class.java)
+    }
+
 }

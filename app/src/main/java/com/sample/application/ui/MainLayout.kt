@@ -25,4 +25,6 @@ class MainLayout : BaseLayout() {
         }
     }
 
+    override fun toolbar(layout: _LinearLayout) = null
+
 }

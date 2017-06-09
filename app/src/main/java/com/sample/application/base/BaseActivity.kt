@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.view.MenuItem
 import android.widget.TextView
 import com.sample.application.R
 import com.sample.application.api.ApiException
 import com.sample.application.ui.semibold
-import dagger.Subcomponent
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
 import org.jetbrains.anko.internals.AnkoInternals
 import org.jetbrains.anko.setContentView
 
@@ -34,9 +32,16 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract val layout: BaseLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         layout.setContentView(this)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun startActivity(intent: Intent) {
@@ -63,13 +68,6 @@ abstract class BaseActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    @Subcomponent
-    interface ActivitySubcomponent : AndroidInjector<BaseActivity> {
-
-        @Subcomponent.Builder
-        abstract class Builder : AndroidInjector.Builder<BaseActivity>()
     }
 
 }

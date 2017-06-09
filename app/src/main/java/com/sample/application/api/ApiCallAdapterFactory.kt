@@ -1,6 +1,8 @@
 package com.sample.application.api
 
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.HttpException
@@ -26,7 +28,9 @@ class ApiCallAdapterFactory private constructor() : CallAdapter.Factory() {
 
         override fun adapt(call: Call<R>): Observable<R> {
             @Suppress("UNCHECKED_CAST")
-            val adapt = mWrappedCallAdapter.adapt(call) as Observable<R>
+            val adapt = (mWrappedCallAdapter.adapt(call) as Observable<R>)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
             return adapt.onErrorResumeNext { throwable: Throwable -> Observable.error(asException(throwable)) }
         }
 

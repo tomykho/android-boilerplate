@@ -17,13 +17,21 @@
             android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
             android:value="GlideModule" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.AlbumActivity"
+            android:label="@string/albums" />
+
+        <activity
+            android:name=".activity.PhotoActivity"
+            android:label="@string/photos" />
 
     </application>
 

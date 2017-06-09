@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="error" type="id" />
+    <item name="loading" type="id" />
+    <item name="loaded" type="id" />
+    <item name="empty" type="id" />
+</resources>
