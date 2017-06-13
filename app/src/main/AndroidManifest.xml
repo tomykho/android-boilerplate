@@ -33,6 +33,10 @@
             android:name=".activity.PhotoActivity"
             android:label="@string/photos" />
 
+        <activity
+            android:name=".activity.PostActivity"
+            android:label="@string/post" />
+
     </application>
 
 </manifest>

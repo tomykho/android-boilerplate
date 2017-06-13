@@ -10,7 +10,7 @@ object Api {
     init {
         val retrofit: Retrofit = Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com")
-                .addCallAdapterFactory(ApiCallAdapterFactory.create())
+                .addCallAdapterFactory(ApiCallAdapter.Factory.create())
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
         service = retrofit.create(ApiService::class.java)

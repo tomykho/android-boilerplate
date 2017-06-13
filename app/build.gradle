@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'blockcanaryex'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.0'
     defaultConfig {
         applicationId "com.sample.application"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
     }
@@ -33,14 +32,12 @@ kapt {
 }
 
 def version = [
-        support: '25.3.1',
+        support: '26.0.0-beta2',
         retrofit: '2.3.0',
         parceler: '1.1.8',
         permissionsdispatcher: '2.4.0',
         anko: '0.10.1',
         dagger: '2.11',
-        blockCanaryEx: '0.9.8.2',
-        glide: '4.0.0-RC0'
 ]
 
 dependencies {
@@ -63,8 +60,6 @@ dependencies {
     compile 'com.github.bumptech.glide:okhttp3-integration:1.5.0@aar'
     compile 'io.paperdb:paperdb:2.0'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
-    debugCompile "com.letv.sarrsdesktop:BlockCanaryExJRT:${version.blockCanaryEx}"
-    releaseCompile "com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:${version.blockCanaryEx}"
     compile("com.github.hotchemi:permissionsdispatcher:${version.permissionsdispatcher}") {
         exclude module: "support-v13"
     }

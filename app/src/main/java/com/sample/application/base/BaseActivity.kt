@@ -10,8 +10,10 @@ import android.widget.TextView
 import com.sample.application.R
 import com.sample.application.api.ApiException
 import com.sample.application.ui.semibold
-import org.jetbrains.anko.internals.AnkoInternals
-import org.jetbrains.anko.setContentView
+import com.sample.application.ui.toolbar
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko._LinearLayout
+import org.jetbrains.anko.verticalLayout
 
 /**
  * Created by tomykho on 5/18/17.
@@ -19,22 +21,27 @@ import org.jetbrains.anko.setContentView
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    var toolbar: Toolbar
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
-        set(v) {
-            setSupportActionBar(v)
-            val f = v::class.java.getDeclaredField("mTitleTextView")
-            f.isAccessible = true
-            val titleTextView = f.get(v) as TextView
-            titleTextView.typeface = titleTextView.semibold
-        }
-
     abstract val layout: BaseLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        layout.setContentView(this)
+        verticalLayout {
+            val toolbar = onCreateToolbar(this)
+            if (toolbar != null) {
+                setSupportActionBar(toolbar)
+                val f = toolbar::class.java.getDeclaredField("mTitleTextView")
+                f.isAccessible = true
+                val titleTextView = f.get(toolbar) as TextView
+                titleTextView.typeface = titleTextView.semibold
+            }
+            val view = layout.createView(AnkoContext.Companion.create(this@BaseActivity, this@BaseActivity))
+            addView(view)
+        }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    open fun onCreateToolbar(layout: _LinearLayout): Toolbar? = with(layout) {
+        toolbar()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

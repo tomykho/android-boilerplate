@@ -28,10 +28,10 @@ class AlbumActivity : BaseActivity() {
                         { items ->
                             layout.stateView.state = LOADED
                             adapter.items = items.toMutableList()
-                    },
-                    { e ->
-                        onError(e)
-                    }
+                        },
+                        { e ->
+                            onError(e)
+                        }
                 )
     }
 

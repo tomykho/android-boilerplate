@@ -1,10 +1,11 @@
 package com.sample.application.ui
 
+import android.app.Activity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sample.application.base.BaseLayout
 import com.sample.application.widget.StateView
-import org.jetbrains.anko._LinearLayout
+import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 
@@ -17,10 +18,10 @@ class RecyclerLayout : BaseLayout() {
     lateinit var stateView: StateView
     lateinit var recyclerView: RecyclerView
 
-    override fun contentView(layout: _LinearLayout) = with(layout) {
+    override fun createView(ui: AnkoContext<Activity>) = with(ui) {
         stateView {
             stateView = this
-            lparams(width = matchParent, height = 0, weight = 1f)
+            lparams(width = matchParent, height = matchParent)
             recyclerView {
                 id = StateView.LOADED
                 lparams(width = matchParent, height = matchParent)

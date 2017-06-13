@@ -1,8 +1,7 @@
 package com.sample.application.ui
 
-import android.view.Gravity
+import android.app.Activity
 import android.widget.Button
-import com.sample.application.R
 import com.sample.application.base.BaseLayout
 import org.jetbrains.anko.*
 
@@ -11,20 +10,20 @@ import org.jetbrains.anko.*
  */
 
 class MainLayout : BaseLayout() {
+
+    lateinit var postButton: Button
     lateinit var albumsButton: Button
 
-    override fun contentView(layout: _LinearLayout) = with(layout) {
+    override fun createView(ui: AnkoContext<Activity>) = with(ui) {
         verticalLayout {
             lparams(width = matchParent, height = matchParent)
-            gravity = Gravity.CENTER
-            padding = dimen(R.dimen.content_padding)
-            button(R.string.post) {
+            gravity = android.view.Gravity.CENTER
+            padding = dimen(com.sample.application.R.dimen.content_padding)
+            postButton = button(com.sample.application.R.string.post) {
             }
-            albumsButton = button(R.string.albums) {
+            albumsButton = button(com.sample.application.R.string.albums) {
             }
         }
     }
-
-    override fun toolbar(layout: _LinearLayout) = null
 
 }

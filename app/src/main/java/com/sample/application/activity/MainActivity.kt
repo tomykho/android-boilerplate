@@ -11,6 +11,10 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        layout.postButton.setOnClickListener {
+            startActivity<PostActivity>()
+        }
         layout.albumsButton.setOnClickListener {
             startActivity<AlbumActivity>()
         }
