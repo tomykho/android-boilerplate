@@ -11,3 +11,4 @@ $ git remote rename origin github
 $ git remote set-url --push github disabled
 $ git remote add origin <your-repository-url>
 $ git push -u origin master
+```
