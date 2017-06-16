@@ -1,6 +1,7 @@
 package com.boilerplate.activity
 
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.boilerplate.adapter.AlbumAdapter
 import com.boilerplate.api.Api
 import com.boilerplate.base.BaseActivity
@@ -23,6 +24,7 @@ class AlbumActivity : BaseActivity() {
         adapter.onCellClickListener = { _, item, _ ->
             startActivity<PhotoActivity>(PhotoActivity.EXTRA_ALBUM to Parcels.wrap(item))
         }
+        val startTime = System.currentTimeMillis()
         request = Api.service.findAlbums()
                 .subscribe(
                         { items ->
@@ -33,6 +35,7 @@ class AlbumActivity : BaseActivity() {
                             onError(e)
                         }
                 )
+        Log.e("Performance", "Speed: " + (System.currentTimeMillis() - startTime) + "ms")
     }
 
     override fun finish() {

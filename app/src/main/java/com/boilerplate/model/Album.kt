@@ -7,7 +7,7 @@ import org.parceler.Parcel
  */
 
 @Parcel
-class Album {
-    var id: Int = 0
-    var title: String = ""
-}
+data class Album(
+        var id: Int = 0,
+        var title: String = ""
+)
