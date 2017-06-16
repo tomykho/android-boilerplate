@@ -25,6 +25,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+    }
 }
 
 kapt {
@@ -49,11 +52,10 @@ dependencies {
     compile "com.android.support:appcompat-v7:${version.support}"
     compile "com.android.support:recyclerview-v7:${version.support}"
     compile "com.squareup.retrofit2:retrofit:${version.retrofit}"
+    compile "com.squareup.retrofit2:converter-jackson:${version.retrofit}"
     compile "com.squareup.retrofit2:adapter-rxjava2:${version.retrofit}"
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
-    compile 'com.alibaba:fastjson:1.1.58.android'
     compile "org.parceler:parceler-api:${version.parceler}"
     kapt "org.parceler:parceler:${version.parceler}"
     compile 'com.github.bumptech.glide:glide:3.8.0'
