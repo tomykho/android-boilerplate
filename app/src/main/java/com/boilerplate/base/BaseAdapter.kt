@@ -52,7 +52,9 @@ abstract class BaseAdapter<M, C : BaseAdapter.BaseCell> : RecyclerView.Adapter<B
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseAdapter.BaseViewHolder<C> {
-        return BaseViewHolder(onCreateCell(parent, viewType))
+        val cell = onCreateCell(parent, viewType)
+        val itemView = cell.createView(AnkoContext.createReusable(parent.context, parent))
+        return BaseViewHolder(cell, itemView)
     }
 
     abstract fun onCreateCell(parent: ViewGroup, viewType: Int): C
@@ -71,15 +73,8 @@ abstract class BaseAdapter<M, C : BaseAdapter.BaseCell> : RecyclerView.Adapter<B
         return position.toLong()
     }
 
-    class BaseViewHolder<out C : BaseCell>(val cell: C) : RecyclerView.ViewHolder(cell.itemView)
+    class BaseViewHolder<out C : BaseCell>(val cell: C, itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    abstract class BaseCell(parent: ViewGroup) : AnkoComponent<ViewGroup> {
-
-        var itemView: View? = null
-
-        init {
-            itemView = this.createView(AnkoContext.Companion.create(parent.context, parent))
-        }
-    }
+    abstract class BaseCell : AnkoComponent<ViewGroup>
 
 }

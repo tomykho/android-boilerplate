@@ -15,7 +15,7 @@ import org.jetbrains.anko.*
 class AlbumAdapter : BaseAdapter<Album, AlbumAdapter.Cell>() {
 
     override fun onCreateCell(parent: ViewGroup, viewType: Int): Cell {
-        return Cell(parent)
+        return Cell()
     }
 
     override fun onBindViewHolder(holder: BaseAdapter.BaseViewHolder<Cell>, position: Int) {
@@ -25,7 +25,7 @@ class AlbumAdapter : BaseAdapter<Album, AlbumAdapter.Cell>() {
         cell.titleTextView.text = item.title
     }
 
-    class Cell(parent: ViewGroup) : BaseCell(parent) {
+    class Cell : BaseCell() {
         lateinit var titleTextView: TextView
 
         override fun createView(ui: AnkoContext<ViewGroup>): View = with(ui) {

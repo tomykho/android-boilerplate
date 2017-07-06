@@ -15,7 +15,7 @@ import org.jetbrains.anko.AnkoContext
 class PhotoAdapter : BaseAdapter<Photo, PhotoAdapter.Cell>() {
 
     override fun onCreateCell(parent: ViewGroup, viewType: Int): Cell {
-        return Cell(parent)
+        return Cell()
     }
 
     override fun onBindViewHolder(holder: BaseAdapter.BaseViewHolder<Cell>, position: Int) {
@@ -25,7 +25,7 @@ class PhotoAdapter : BaseAdapter<Photo, PhotoAdapter.Cell>() {
         cell.imageView.url = item.url
     }
 
-    class Cell(parent: ViewGroup) : BaseCell(parent) {
+    class Cell : BaseCell() {
         lateinit var imageView: ImageView
 
         override fun createView(ui: AnkoContext<ViewGroup>): View = with(ui) {
