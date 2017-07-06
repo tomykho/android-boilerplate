@@ -67,6 +67,10 @@ abstract class BaseAdapter<M, C : BaseAdapter.BaseCell> : RecyclerView.Adapter<B
         }
     }
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
     class BaseViewHolder<out C : BaseCell>(val cell: C) : RecyclerView.ViewHolder(cell.itemView)
 
     abstract class BaseCell(parent: ViewGroup) : AnkoComponent<ViewGroup> {
